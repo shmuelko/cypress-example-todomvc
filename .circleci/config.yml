@@ -37,9 +37,9 @@ commands:
             - cache-{{ checksum "package.json" }}
       # install npm dependencies and Cypress binary
       # if they were cached, this step is super quick
-      #- run:
-      #    name: Install dependencies
-      #    command: npm ci
+      - run:
+          name: Install dependencies
+          command: npm ci
       # save npm dependencies and Cypress binary for future runs
       - save_cache:
           key: cache-{{ checksum "package.json" }}
@@ -54,11 +54,7 @@ commands:
       - setup_remote_docker:
           version: 19.03.13
 
-      - run:
-        name: Install Docker CLI
-        command: |
-          curl -fsSL https://get.docker.com -o get-docker.sh
-          sh get-docker.sh
+
 
       - run:
           name: Run Cypress Tests
