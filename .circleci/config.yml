@@ -28,10 +28,12 @@ jobs:
 
 commands:
   cypress_server:
-    - run:
-        name: start cypress server
-        command: |
-          npm start
+    - steps:
+      - checkout
+      - run:
+          name: start cypress server
+          command: |
+            npm start
 
   cypress_smoke_tests:
     description: Run the web app UI tests that are written in Cypress
