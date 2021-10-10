@@ -21,6 +21,12 @@ jobs:
           env: "Staging"
 
 commands:
+  cypress_server:
+    - run:
+        name: start cypress server
+        command: |
+          npm start
+
   cypress_smoke_tests:
     description: Run the web app UI tests that are written in Cypress
     parameters:
@@ -58,11 +64,6 @@ commands:
             sh get-docker.sh
 
       - run: mkdir -p test-results
-
-      - run:
-          name: start cypress server
-          command: |
-            npm start
 
       - run:
           name: Run Cypress Tests
@@ -105,6 +106,7 @@ commands:
 workflows:
   say-hello-workflow:
     jobs:
+      - cypress_server
       - say-hello:
           context:
             - FC_PARAMS
