@@ -86,6 +86,10 @@ commands:
           command: ls
 
       - run:
+          name: check test-results ls
+          command: ls test-results
+
+      - run:
           name: check pwd2
           command: pwd
 
