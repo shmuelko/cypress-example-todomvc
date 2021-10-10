@@ -81,6 +81,14 @@ commands:
       - store_artifacts:
           path: test-results
 
+      - run:
+          name: check ls
+          command: ls
+
+      - run:
+          name: check pwd2
+          command: pwd
+
       - firecracker/fire:
           api_token: PT_API
           email: 'brian.yip@form.com'
