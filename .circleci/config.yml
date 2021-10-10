@@ -40,16 +40,14 @@ commands:
       - run:
           name: Install dependencies
           command: npm ci
+
+      - run: npm run cy:verify
       # save npm dependencies and Cypress binary for future runs
       - save_cache:
           key: cache-{{ checksum "package.json" }}
           paths:
             - ~/.npm
             - ~/.cache
-
-      # run tests
-      # - run: npm run e2e:<< parameters.env >>
-      - run: mkdir -p test-results
 
       - setup_remote_docker:
           version: 19.03.13
@@ -60,6 +58,8 @@ commands:
             curl -fsSL https://get.docker.com -o get-docker.sh
             sh get-docker.sh
 
+      - run: mkdir -p test-results
+        -
       - run:
           name: Run Cypress Tests
           command: |
