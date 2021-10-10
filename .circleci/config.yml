@@ -59,7 +59,7 @@ commands:
             sh get-docker.sh
 
       - run: mkdir -p test-results
-        -
+
       - run:
           name: Run Cypress Tests
           command: |
