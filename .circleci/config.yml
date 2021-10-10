@@ -73,7 +73,7 @@ commands:
             npx cypress run --env ENVIRONMENT=<< parameters.env >> \
                             --spec $(echo $TESTFILES | tr ' ' ',') \
                             --reporter junit \
-                            --reporter-options "mochaFile=/test-results/cypress-test-results.xml" \
+                            --reporter-options "mochaFile=/root/project/test-results/cypress-test-results.xml" \
 
       - store_test_results:
           path: test-results
