@@ -90,6 +90,10 @@ commands:
           command: ls test-results
 
       - run:
+          name: check root ls
+          command: ls ~
+
+      - run:
           name: check pwd2
           command: pwd
 
