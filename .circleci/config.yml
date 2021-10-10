@@ -28,7 +28,7 @@ jobs:
 
 commands:
   cypress_server:
-    - steps:
+    steps:
       - checkout
       - run:
           name: start cypress server
