@@ -57,7 +57,6 @@ commands:
       - run:
           name: Run Cypress Tests
           command: |
-            cypress install
             TESTFILES=$(circleci tests glob "cypress/integration/*.js" | circleci tests split --split-by=timings --timings-type=filename)
             echo "running " $(echo $TESTFILES | wc -w) " test files on this container"
             echo $(echo $TESTFILES | tr ' ' ',')
