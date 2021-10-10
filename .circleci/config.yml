@@ -37,11 +37,10 @@ commands:
             - cache-{{ checksum "package.json" }}
       # install npm dependencies and Cypress binary
       # if they were cached, this step is super quick
-      - run:
-          name: Install dependencies
-          command: npm ci
+      #- run:
+      #    name: Install dependencies
+      #    command: npm ci
       # save npm dependencies and Cypress binary for future runs
-      -
       - save_cache:
           key: cache-{{ checksum "package.json" }}
           paths:
