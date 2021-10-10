@@ -72,11 +72,11 @@ commands:
                             --reporter-options "mochaFile=/test-results/cypress-test-results.xml" \
 
       - store_artifacts:
-          path: /root/project/cypress/screenshots
+          path: test-results
           destination: build
 
       - store_artifacts:
-          path: /root/project/cypress/videos
+          path: test-results
           destination: build
 
       - store_test_results:
