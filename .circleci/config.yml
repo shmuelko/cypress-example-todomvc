@@ -9,6 +9,7 @@ orbs:
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
   say-hello:
+    working_directory: ~/repo
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker:
@@ -71,21 +72,11 @@ commands:
                             --reporter junit \
                             --reporter-options "mochaFile=/test-results/cypress-test-results.xml" \
 
-      - store_artifacts:
-          path: test-results
-          destination: build
-
-      - store_artifacts:
-          path: test-results
-          destination: build
-
       - store_test_results:
           path: test-results
 
       - store_artifacts:
           path: test-results
-
-
 
       - firecracker/fire:
           api_token: PT_API
