@@ -8,12 +8,7 @@ orbs:
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  run_cypress_server:
-    docker:
-      - image: cypress/base:14
-    steps:
-      - checkout
-      - cypress_server
+
   say-hello:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
@@ -25,15 +20,6 @@ jobs:
       - checkout
       - cypress_smoke_tests:
           env: "Staging"
-
-commands:
-  cypress_server:
-    steps:
-      - checkout
-      - run:
-          name: start cypress server
-          command: |
-            npm start
 
   cypress_smoke_tests:
     description: Run the web app UI tests that are written in Cypress
@@ -76,6 +62,7 @@ commands:
       - run:
           name: Run Cypress Tests
           command: |
+            & npm start
             TESTFILES=$(circleci tests glob "cypress/integration/*.js" | circleci tests split --split-by=timings --timings-type=filename)
             echo "running " $(echo $TESTFILES | wc -w) " test files on this container"
             echo $(echo $TESTFILES | tr ' ' ',')
@@ -114,7 +101,6 @@ commands:
 workflows:
   say-hello-workflow:
     jobs:
-      - run_cypress_server
       - say-hello:
           context:
             - FC_PARAMS
